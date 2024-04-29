@@ -30,12 +30,25 @@ async function run() {
     await client.connect();
 
    const craftCollection = client.db('craftdb').collection('craft')
+   const craftSubCollection = client.db('craftdb').collection('subcraft')
 
       app.get('/craft',async(req,res)=>{
             const cursor = craftCollection.find()
             const result = await cursor.toArray();
             res.send(result)
       })
+      app.get('/subcraft',async(req,res)=>{
+            const cursor = craftSubCollection.find()
+            const result = await cursor.toArray();
+            res.send(result)
+      })
+      app.get('/subcraft/:id',async (req,res)=>{
+        const id = req.params.id;
+        const query = {_id : new ObjectId(id)}
+        const result = await craftSubCollection.findOne(query)
+        res.send(result)
+      })
+
       app.get('/view/:id',async(req,res)=>{
          const id = req.params.id;
          const query = {_id : new ObjectId(id)}
