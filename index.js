@@ -6,7 +6,11 @@ const app = express()
 const port = process.env.PORT ||5000; 
 
 // middleware 
-app.use(cors());
+app.use(cors({
+    origin: ["http://localhost:5173/","https://art-craft-store-2b218.web.app","https://art-craft-store-2b218.firebaseapp.com"],
+    credentials:true
+    
+}));
 app.use(express.json());
 
 //craftuser
@@ -27,7 +31,7 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
+
 
    const craftCollection = client.db('craftdb').collection('craft')
    const craftSubCollection = client.db('craftdb').collection('subcraft')
