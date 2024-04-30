@@ -7,7 +7,7 @@ const port = process.env.PORT ||5000;
 
 // middleware 
 app.use(cors({
-    origin: ["http://localhost:5173/","https://art-craft-store-2b218.web.app","https://art-craft-store-2b218.firebaseapp.com"],
+    origin: ["http://localhost:5173","https://art-craft-store-2b218.web.app","https://art-craft-store-2b218.firebaseapp.com"],
     credentials:true
     
 }));
